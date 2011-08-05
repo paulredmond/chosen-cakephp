@@ -26,7 +26,7 @@ public $helpers = array(
 Make sure that you are loading JQuery (1.4+) however you want:
 
 ```php
-// One way in In default.ctp
+// One way in could be from default.ctp
 echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 ```
 
