@@ -45,10 +45,6 @@ echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 
 *Note: Chosen CSS/JS files are only loaded if the helper select method is called at least once.*
 
-```
-echo $this->Chosen->select('Model.field');
-```
-
 ### Examples
 Chosen inputs behave identically to the FormHelper::input() method.
 
