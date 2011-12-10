@@ -26,6 +26,8 @@ ln -s ../path/to/chosen/plugin/webroot underscored_plugin_name
 In /app/AppController.php setup helper:
 
 ```php
+<?php
+
 public $helpers = array(
     'Chosen.Chosen', // app/Plugin/Chosen
 );
@@ -35,6 +37,8 @@ public $helpers = array(
 Make sure that you are loading JQuery (1.4+) however you want:
 
 ```php
+<?php
+
 // One way in In default.ctp
 echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 ```
@@ -49,25 +53,33 @@ echo $this->Chosen->select('Model.field');
 Chosen inputs behave identically to the FormHelper::input() method.
 
 Multi-select:
-```
+```php
+<?php
 echo $this->Chosen->select(
     'Article.category_id',
     array(1 => 'Category 1', 2 => 'Category 2'),
     array('data-placeholder' => 'Pick categories...', 'multiple' => true)
 );
+?>
 ```
 
 Default selected:
-```
+```php
+<?php
 echo $this->Chosen->select(
     'Article.category_id',
     array(1 => 'Category 1', 2 => 'Category 2'),
-    array('data-placeholder' => 'Pick categories...', 'default' => 1) // Usually would be dynamic from form helper
+    array(
+        'data-placeholder' => 'Pick categories...',
+        'default' => 1,
+    ) 
 );
+?>
 ```
 
 Grouped:
-```
+```php
+<?php
 echo $this->Chosen->select(
     'Profile.favorite_team',
     array(
@@ -85,6 +97,10 @@ echo $this->Chosen->select(
         ),
         // ....
     ),
-    array('data-placeholder' => 'Pick your favorite NFL team...', 'style' => 'width: 350px')
+    array(
+        'data-placeholder' => 'Pick your favorite NFL team...',
+        'style' => 'width: 350px'
+    )
 );
+?>
 ```
