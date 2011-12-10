@@ -23,7 +23,9 @@ ln -s ../path/to/chosen/plugin/webroot underscored_plugin_name
 ```
 *If you clone chosen-cakephp to app/Plugin/MyChosen, symlink would be called app/webroot/my_chosen*
 
-In /app/AppController.php setup helper:
+### Setup
+
+In /app/Controller/AppController.php:
 
 ```php
 <?php
