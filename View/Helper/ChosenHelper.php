@@ -21,7 +21,7 @@
  */
 class ChosenHelper extends AppHelper
 {
-    public $helpers = array('Html', 'Form', 'Javascript');
+    public $helpers = array('Html', 'Form');
     
     /**
      * $loaded
@@ -56,7 +56,7 @@ class ChosenHelper extends AppHelper
     /**
      * Chosen select element.
      */
-    public function select($name, $options = array(), $selected = null, $attributes = array())
+    public function select($name, $options = array(), $attributes = array())
     {
         if ($this->loaded === false) {
             $this->loaded = true;
@@ -71,7 +71,7 @@ class ChosenHelper extends AppHelper
             $attributes['class'] .= " {$class}";
         }
         
-        return $this->Form->select($name, $options, $selected, $attributes);
+        return $this->Form->select($name, $options, $attributes);
     }
     
     public function afterRender()
@@ -85,13 +85,27 @@ class ChosenHelper extends AppHelper
         
         $class = $this->settings['class'];
         
-        $this->Html->css('/chosen/chosen/chosen.css', null, array('inline' => false));
-        $this->Html->script("/chosen/chosen/{$script}", array('inline' => false));
-        $this->Javascript->codeBlock("
+        $this->Html->css($this->webroot() . '/chosen/chosen.css', null, array('inline' => false));
+        $this->Html->script($this->webroot() . "/chosen/{$script}", array('inline' => false));
+        $this->Html->scriptBlock("
             $(document).ready(function(){
                 $('.{$class}').chosen();
             })",
             array('inline' => false, 'safe' => $this->settings['safe'])
         );
+    }
+    
+    /**
+     * The plugin's webroot folder name.
+     * 
+     * Configured in this plugin's bootstrap.php file.
+     * Ideally, symlink this path to the webroot.
+     * 
+     * @access public
+     * @return string
+     */
+    public function webroot()
+    {
+        return '/' . Configure::read('Chosen.webroot');
     }
 }
