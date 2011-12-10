@@ -1,3 +1,0 @@
-[submodule "vendors/chosen"]
-	path = vendors/chosen
-	url = https://github.com/harvesthq/chosen.git
