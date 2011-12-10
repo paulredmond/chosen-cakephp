@@ -53,6 +53,7 @@ echo $this->Chosen->select('Model.field');
 Chosen inputs behave identically to the FormHelper::input() method.
 
 Multi-select:
+
 ```php
 <?php
 echo $this->Chosen->select(
@@ -64,6 +65,7 @@ echo $this->Chosen->select(
 ```
 
 Default selected:
+
 ```php
 <?php
 echo $this->Chosen->select(
@@ -78,6 +80,7 @@ echo $this->Chosen->select(
 ```
 
 Grouped:
+
 ```php
 <?php
 echo $this->Chosen->select(
