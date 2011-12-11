@@ -7,7 +7,7 @@
  * Distributed under the terms of the MIT License.
  * 
  * PHP Version 5
- * CakePHP Version 1.3
+ * CakePHP Version 2.x
  * 
  * @package chosen
  * @subpackage chosen.views.helpers
@@ -59,7 +59,7 @@ class ChosenHelper extends AppHelper
      */
     public function select($name, $options = array(), $attributes = array())
     {
-        if ($this->loaded === false) {
+        if (false === $this->loaded) {
             $this->loaded = true;
         }
         
@@ -77,7 +77,7 @@ class ChosenHelper extends AppHelper
     
     public function afterRender()
     {
-        if ($this->loaded === false) {
+        if (false === $this->loaded) {
             return;
         }
         
