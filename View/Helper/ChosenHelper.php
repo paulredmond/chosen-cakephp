@@ -47,7 +47,8 @@ class ChosenHelper extends AppHelper
      */
     protected $settings = array();
     
-    public function __construct($options=null) {
+    public function __construct($options=null)
+    {
 		parent::__construct($options);
 		$this->settings = array_merge($this->options, (array) $options);
 		$this->debug = Configure::read('debug') ? true : false;
@@ -106,6 +107,8 @@ class ChosenHelper extends AppHelper
      */
     public function webroot()
     {
-        return '/' . Configure::read('Chosen.webroot');
+        $webroot = Configure::read('Chosen.webroot');
+        
+        return null === $webroot ? $webroot : "/{$webroot}";
     }
 }

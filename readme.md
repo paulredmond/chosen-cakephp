@@ -10,8 +10,8 @@ Chosen CakePHP 2 plugin supports [Composer](https://github.com/composer/composer
 
 ```
 cd path/to/app/Plugin or /plugins
-git clone git@github.com:paulredmond/chosen-cakephp.git chosen
-cd chosen
+git clone git@github.com:paulredmond/chosen-cakephp.git Chosen
+cd Chosen
 php composer.phar install
 ```
 
@@ -19,9 +19,9 @@ php composer.phar install
 ### Optional webroot symlink
 ```
 cd /path/to/app/webroot
-ln -s ../path/to/chosen/plugin/webroot underscored_plugin_name
+ln -s ../path/to/chosen/plugin/webroot chosen
 ```
-*If you clone chosen-cakephp to app/Plugin/MyChosen, symlink would be called app/webroot/my_chosen*
+*Cloning into the folder Chosen is important, as that path is referenced in tests and resource urls.*
 
 ### Setup
 
@@ -42,7 +42,7 @@ In /app/Controller/AppController.php:
 <?php
 
 public $helpers = array(
-    'HarvestChosen.Chosen', // app/Plugin/HarvestChosen
+    'Chosen.Chosen',
 );
 ```
 
