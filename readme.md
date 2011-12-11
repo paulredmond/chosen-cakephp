@@ -42,7 +42,7 @@ In /app/Controller/AppController.php:
 <?php
 
 public $helpers = array(
-    'Chosen.Chosen', // app/Plugin/Chosen
+    'HarvestChosen.Chosen', // app/Plugin/Chosen
 );
 ```
 
