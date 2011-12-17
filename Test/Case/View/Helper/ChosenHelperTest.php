@@ -23,10 +23,9 @@ class ChosenHelperTest extends CakeTestCase {
         return new ChosenHelper(new View(new Controller()), $settings);
     }
     
-    public function getSelectInput()
+    public function getSelectInput($options = array())
     {
-        $id = 'my_id';
-        return $this->Chosen->select('Article.select', array(1 => 'Option 1', 2 => 'Option 2'), array('id' => $id));
+        return $this->Chosen->select('Article.category', array(1 => 'Option 1', 2 => 'Option 2'), $options);
     }
     
     public function testSelectTag()
@@ -41,9 +40,45 @@ class ChosenHelperTest extends CakeTestCase {
                 'only' => array('tag' => 'option')
             )
         ), $dom, '<select> should exist with two child option tags');
-        // $select = $dom->getElementsByTagName('select');
-        // $this->assertLength();
-
+        
+        // Calling select will set ChosenHelper::$load to true
+        // This means that chosen vendor scripts/assets will be load on render.
+        $this->assertTrue($this->Chosen->getLoadStatus());
+    }
+    
+    public function testSelectOptions()
+    {
+        $placeholderText = 'Please select option';
+        $dom = new DomDocument();
+        $html = $this->getSelectInput(array('data-placeholder' => $placeholderText));
+        $dom->loadHTML($html);
+        $select = $dom->getElementsByTagName('select')->item(0);
+        $this->assertNotNull($select);
+        $this->assertInstanceOf('DOMElement', $select);
+        $this->assertEqual($placeholderText, $select->getAttribute('data-placeholder'));
+    }
+    
+    public function testChosenClass()
+    {
+        // Make sure the chosen class attribute exists
+        $class = $this->Chosen->getSetting('class');
+        $dom = new DomDocument();
+        $html = $this->getSelectInput();
+        $dom->loadHTML($html);
+        $select = $dom->getElementsByTagName('select')->item(0);
+        $this->assertNotNull($select);
+        $this->assertInstanceOf('DOMElement', $select);
+        $this->assertEqual($class, $select->getAttribute('class'));
+        
+        // Adding a class to the options array should not remove the chosen class
+        $customClass = 'my-custom-class';
+        $dom = new DomDocument();
+        $html = $this->getSelectInput(array('class' => $customClass));
+        $dom->loadHTML($html);
+        $select = $dom->getElementsByTagName('select')->item(0);
+        $this->assertNotNull($select);
+        $this->assertInstanceOf('DOMElement', $select);
+        $this->assertEqual("{$customClass} {$class}", $select->getAttribute('class'));
     }
     
     public function testHelperConstruction()
@@ -76,6 +111,12 @@ class ChosenHelperTest extends CakeTestCase {
         
         // Restore current debug setting
         Configure::write('debug', $debug);
+        
+        // Make sure Chosen helper has instance of each item in $helpers
+        $this->assertInstanceOf('ChosenHelper', $this->Chosen);
+        foreach ($this->Chosen->helpers as $name) {
+            $this->assertInstanceOf($name . 'Helper', $this->Chosen->{$name});
+        }
     }
     
     public function testGetSettingMethod()

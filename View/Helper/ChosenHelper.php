@@ -24,10 +24,10 @@ class ChosenHelper extends AppHelper
     public $helpers = array('Html', 'Form');
     
     /**
-     * $loaded
+     * $load
      * If a chosen select element was called, load up the scripts.
      */
-    private $loaded = false;
+    private $load = false;
     
     /**
      * Determine if debug is disabled/enabled
@@ -37,7 +37,7 @@ class ChosenHelper extends AppHelper
     /**
      * Default configuration options.
      */
-    protected $options = array(
+    protected $defaults = array(
         'class' => 'chzn-select',
         'safe' => true
     );
@@ -47,20 +47,49 @@ class ChosenHelper extends AppHelper
      */
     protected $settings = array();
     
-    public function __construct($options=null)
+    public function __construct(View $view, $settings = array())
     {
-		parent::__construct($options);
-		$this->settings = array_merge($this->options, (array) $options);
+		parent::__construct($view, $settings);
+		$this->settings = array_merge($this->defaults, (array) $settings);
 		$this->debug = Configure::read('debug') ? true : false;
 	}
+    
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+    
+    public function getSetting($setting)
+    {
+        if (isset($this->settings[$setting])) {
+            return $this->settings[$setting];
+        }
+        
+        return null;
+    }
+    
+    public function getDefaults()
+    {
+        return (array) $this->defaults;
+    }
+    
+    public function getDebug()
+    {
+        return (boolean) $this->debug;
+    }
+    
+    public function getLoadStatus()
+    {
+        return (bool) $this->load;
+    }
     
     /**
      * Chosen select element.
      */
     public function select($name, $options = array(), $attributes = array())
     {
-        if (false === $this->loaded) {
-            $this->loaded = true;
+        if (false === $this->load) {
+            $this->load = true;
         }
         
         $class = $this->settings['class'];
@@ -77,7 +106,7 @@ class ChosenHelper extends AppHelper
     
     public function afterRender()
     {
-        if (false === $this->loaded) {
+        if (false === $this->load) {
             return;
         }
         
@@ -94,21 +123,5 @@ class ChosenHelper extends AppHelper
             })",
             array('inline' => false, 'safe' => $this->settings['safe'])
         );
-    }
-    
-    /**
-     * The plugin's webroot folder name.
-     * 
-     * Configured in this plugin's bootstrap.php file.
-     * Ideally, symlink this path to the webroot.
-     * 
-     * @access public
-     * @return string
-     */
-    public function webroot()
-    {
-        $webroot = Configure::read('Chosen.webroot');
-        
-        return null === $webroot ? $webroot : "/{$webroot}";
     }
 }
