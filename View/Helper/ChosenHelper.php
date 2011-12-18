@@ -115,12 +115,12 @@ class ChosenHelper extends AppHelper
         
         $class = $this->settings['class'];
         
-        $this->Html->css($this->webroot() . '/chosen/chosen.css', null, array('inline' => false));
-        $this->Html->script($this->webroot() . "/chosen/{$script}", array('inline' => false));
+        $this->Html->css('/chosen/chosen/chosen.css', null, array('inline' => false));
+        $this->Html->script("/chosen/chosen/{$script}", array('inline' => false));
         $this->Html->scriptBlock("
             $(document).ready(function(){
                 $('.{$class}').chosen();
-            })",
+            });",
             array('inline' => false, 'safe' => $this->settings['safe'])
         );
     }

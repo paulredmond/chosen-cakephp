@@ -2,8 +2,17 @@
 
 App::uses('Controller', 'Controller');
 App::uses('View', 'View');
-App::uses('ChosenHelper', 'Chosen.View/Helper');
+App::uses('Helper', 'View');
+App::uses('HtmlHelper', 'View/Helper');
 App::uses('FormHelper', 'View/Helper');
+App::uses('ChosenHelper', 'Chosen.View/Helper');
+
+class TestView extends View {
+    public function getScripts()
+    {
+        return $this->_scripts;
+    }
+}
 
 class ChosenHelperTest extends CakeTestCase {
     
@@ -12,10 +21,16 @@ class ChosenHelperTest extends CakeTestCase {
     public function setUp()
     {
         parent::setUp();
-        $View = new View(new Controller());
-        $this->Chosen = new ChosenHelper($View);
-        $form =& $this->Chosen->Form;
-        $form->request = new CakeRequest('/', false);
+        $this->View = new TestView(new Controller());
+        $this->Helper = new Helper($this->View);
+        $this->Helper->request = new CakeRequest(null, false);
+        $this->Helper->request->webroot = '';
+        $this->Html = new HtmlHelper($this->View);
+        $this->Form = new FormHelper($this->View);
+        $this->Chosen = new ChosenHelper($this->View);
+        $this->Chosen->Form = $this->Form;
+        $this->Chosen->Html = $this->Html;
+        $this->Chosen->Html->request = $this->Form->request = $this->Helper->request;
     }
     
     public function getNewHelperInstance($settings = array())
@@ -58,7 +73,7 @@ class ChosenHelperTest extends CakeTestCase {
         $this->assertEqual($placeholderText, $select->getAttribute('data-placeholder'));
     }
     
-    public function testChosenClass()
+    public function testChosenClassAttribute()
     {
         // Make sure the chosen class attribute exists
         $class = $this->Chosen->getSetting('class');
@@ -79,6 +94,32 @@ class ChosenHelperTest extends CakeTestCase {
         $this->assertNotNull($select);
         $this->assertInstanceOf('DOMElement', $select);
         $this->assertEqual("{$customClass} {$class}", $select->getAttribute('class'));
+    }
+    
+    public function testAfterRenderMethod()
+    {
+        $html = $this->getSelectInput();
+        $this->Chosen->afterRender();
+        $scripts = $this->View->getScripts();
+        
+        $expected = array(
+			array('link' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => '/chosen/chosen/chosen.css')),
+			array('script' => array('type' => 'text/javascript', 'src' => '/chosen/chosen/chosen.jquery.js')),
+			'/script',
+			array('script' => array('type' => 'text/javascript')),
+		);
+		$this->assertCount(3, $scripts);
+		$this->assertTags(implode("\n", $scripts), $expected);
+
+		// Third script is a little trickier to test
+		$class = $this->Chosen->getSetting('class');
+		$script = $scripts[2];
+		// Check for a jQuery domready
+		$this->assertRegExp("/\\$\(\s*document\s*\)\.ready\(\s*function\s*\(\){/", $script);
+		// Make sure script is calling chosen() method with the configured className
+		$this->assertRegExp("/\\$\(['\"]\.{$class}['\"]\)\.chosen\(\)/", $script);
+		// Make sure domready call is closed properly
+		$this->assertRegExp("/}\s*\);/", $script);
     }
     
     public function testHelperConstruction()
