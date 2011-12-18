@@ -177,7 +177,7 @@ class ChosenHelperTest extends CakeTestCase {
         $this->assertNull($helper->getSetting('setting-does-not-exist'));
     }
     
-    public function testGetSettings()
+    public function testGetSettingsMethod()
     {
         $helper = $this->Chosen;
         $settings = $helper->getSettings();
