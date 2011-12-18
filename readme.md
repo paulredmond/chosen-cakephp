@@ -25,17 +25,6 @@ ln -s ../path/to/chosen/plugin/webroot chosen
 
 ### Setup
 
-In /app/Config/bootstrap.php:
-
-```php
-<?php
-//...
-
-// "HarvestChosen" should match the folder where you cloned this plugin
-// Bootstrap contains plugin configuration, such as the proper plugin webroot url.
-CakePlugin::load('HarvestChosen', array('bootstrap' => true));
-```
-
 In /app/Controller/AppController.php:
 
 ```php
