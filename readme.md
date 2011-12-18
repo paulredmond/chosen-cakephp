@@ -15,6 +15,13 @@ cd Chosen
 php composer.phar install
 ```
 
+Bootstrap the plugin in app/Config/bootstrap.php:
+```php
+<?php
+// ...
+CakePlugin::load('Chosen');
+?>
+```
 
 ### Optional webroot symlink
 ```
@@ -24,17 +31,6 @@ ln -s ../path/to/chosen/plugin/webroot chosen
 *Cloning into the folder Chosen is important, as that path is referenced in tests and resource urls.*
 
 ### Setup
-
-In /app/Config/bootstrap.php:
-
-```php
-<?php
-//...
-
-// "HarvestChosen" should match the folder where you cloned this plugin
-// Bootstrap contains plugin configuration, such as the proper plugin webroot url.
-CakePlugin::load('HarvestChosen', array('bootstrap' => true));
-```
 
 In /app/Controller/AppController.php:
 
