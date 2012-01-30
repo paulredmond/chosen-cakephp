@@ -34,5 +34,6 @@
     },
     "config": {
         "vendor-dir": "Vendor"
-    }
+    },
+    "target-dir": "app/Plugin"
 }
