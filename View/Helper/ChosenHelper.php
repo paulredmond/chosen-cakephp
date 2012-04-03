@@ -38,6 +38,7 @@ class ChosenHelper extends AppHelper
      * Default configuration options.
      */
     protected $defaults = array(
+        'framework' => 'jquery',
         'class' => 'chzn-select',
         'safe' => true
     );
@@ -50,8 +51,13 @@ class ChosenHelper extends AppHelper
     public function __construct(View $view, $settings = array())
     {
 		parent::__construct($view, $settings);
+		$this->view = $view;
 		$this->settings = array_merge($this->defaults, (array) $settings);
 		$this->debug = Configure::read('debug') ? true : false;
+
+		if (!in_array($fw = $this->getSetting('framework'), array('jquery', 'prototype'))) {
+		    throw new LogicException(sprintf('Configured JavaScript framework "%s" is not supported. Only "jquery" or "prototype" are valid options.', $fw));
+		}
 	}
     
     public function getSettings()
@@ -94,6 +100,12 @@ class ChosenHelper extends AppHelper
         
         $class = $this->settings['class'];
         
+        // @todo write a test and configure
+        if (isset($attributes['deselect']) && $attributes['deselect'] === true) {
+            $class .= '-deselect';
+            unset($attributes['deselect']);
+        }
+
         if (isset($attributes['class']) === false) {
             $attributes['class'] = $class;
         }
@@ -109,19 +121,28 @@ class ChosenHelper extends AppHelper
         if (false === $this->load) {
             return;
         }
+
+        switch ($this->settings['framework']) {
+            case 'prototype':
+                $elm = 'prototype-script';
+                $script = 'chosen.proto.%s';
+            break;
+
+            case 'jquery':
+            default:
+                $elm = 'jquery-script';
+                $script = 'chosen.jquery.%s';
+            break;
+        }
         
-        $script = 'chosen.jquery.%s';
+        // 3rd party assets
         $script = sprintf($script, $this->debug === true ? 'js' : 'min.js');
-        
-        $class = $this->settings['class'];
-        
         $this->Html->css('/chosen/chosen/chosen.css', null, array('inline' => false));
         $this->Html->script("/chosen/chosen/{$script}", array('inline' => false));
-        $this->Html->scriptBlock("
-            $(document).ready(function(){
-                $('.{$class}').chosen();
-            });",
-            array('inline' => false, 'safe' => $this->settings['safe'])
-        );
+
+        // Add the script.
+        $class = $this->getSetting('class');
+        $block = $this->view->element($elm, array('class' => $class), array('plugin' => 'Chosen'));
+        $this->view->addScript($block);
     }
 }
