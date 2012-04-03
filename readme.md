@@ -16,10 +16,14 @@ php composer.phar install
 ```
 
 Bootstrap the plugin in app/Config/bootstrap.php:
+
 ```php
 <?php
+
 // ...
+
 CakePlugin::load('Chosen');
+
 ?>
 ```
 
