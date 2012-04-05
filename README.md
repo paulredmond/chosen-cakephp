@@ -76,7 +76,7 @@ echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 ### Running Tests
 You can run tests for Chosen with phpunit from the ```app``` folder. Learn more about [Testing in CakePHP 2](http://book.cakephp.org/2.0/en/development/testing.html)
 
-```
+```console
 ./Console/cake testsuite Chosen View/Helper/ChosenHelper
 ```
 
