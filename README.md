@@ -59,7 +59,7 @@ public $helpers = array(
 );
 ```
 
-Now all classes rendered with the helper, or other ```<select>``` inputs with your configured class will be targeted. To add a deselect
+Now all classes rendered with the helper, or other ```<select>``` inputs with your configured class will be targeted.
 
 ### JQuery / Prototype
 Make sure that you are loading JQuery (1.4+) or Prototype however you want:
