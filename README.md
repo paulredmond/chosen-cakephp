@@ -57,6 +57,7 @@ public $helpers = array(
         'class'     => 'chosen-custom', // Delselect-enabled class would be 'chosen-custom-deselect'
     ),
 );
+```
 
 Now all classes rendered with the helper, or other ```<select>``` inputs with your configured class will be targeted. To add a deselect
 
