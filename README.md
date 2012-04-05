@@ -8,7 +8,7 @@ Check out HarvestHQ's [demo](http://harvesthq.github.com/chosen/) for documentat
 
 Chosen CakePHP 2 plugin supports [Composer](https://github.com/composer/composer) and [Packagist](http://packagist.org/). After you [download](http://packagist.org/) composer.phar and put it in your path:
 
-```
+```console
 cd path/to/app/Plugin or /plugins
 git clone git@github.com:paulredmond/chosen-cakephp.git Chosen
 cd Chosen
