@@ -46,8 +46,22 @@ public $helpers = array(
 );
 ```
 
-### JQuery
-Make sure that you are loading JQuery (1.4+) however you want:
+Out of the box, the ChosenHelper will work with jQuery; but you might want prototype or a custom class:
+
+```php
+<?php
+
+public $helpers = array(
+    'Chosen.Chosen' => array(
+        'framework' => 'prototype',
+        'class'     => 'chosen-custom', // Delselect-enabled class would be 'chosen-custom-deselect'
+    ),
+);
+
+Now all classes rendered with the helper, or other ```<select>``` inputs with your configured class will be targeted. To add a deselect
+
+### JQuery / Prototype
+Make sure that you are loading JQuery (1.4+) or Prototype however you want:
 
 ```php
 <?php
@@ -56,7 +70,7 @@ Make sure that you are loading JQuery (1.4+) however you want:
 echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 ```
 
-*Note: Chosen CSS/JS files are only loaded if the helper select method is called at least once.*
+* Note: Chosen CSS/JS files are only loaded if the helper select method is called at least once.*
 
 ### Running Tests
 You can run tests for Chosen with phpunit from the ```app``` folder. Learn more about [Testing in CakePHP 2](http://book.cakephp.org/2.0/en/development/testing.html)
@@ -123,3 +137,17 @@ echo $this->Chosen->select(
 );
 ?>
 ```
+
+Deselect on Single Select:
+
+```php
+<?=
+$this->Chosen->select(
+    'Profile.optional',
+    $options,
+    array('data-placeholder' => 'Please select...', 'deselect' => true),
+);
+?>
+```
+
+Do not use ```empty``` attribute with deselect, use data-placeholder instead.

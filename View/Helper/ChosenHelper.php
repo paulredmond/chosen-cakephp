@@ -33,14 +33,18 @@ class ChosenHelper extends AppHelper
      * Determine if debug is disabled/enabled
      */
     private $debug = false;
-    
+
+    /**
+     * @var \View
+     */
+    private $view = null;
+
     /**
      * Default configuration options.
      */
     protected $defaults = array(
         'framework' => 'jquery',
         'class' => 'chzn-select',
-        'safe' => true
     );
     
     /**
@@ -98,10 +102,15 @@ class ChosenHelper extends AppHelper
             $this->load = true;
         }
         
-        $class = $this->settings['class'];
-        
+        $class = $this->getSetting('class');
+
+        // Use these locally to do some checking...still pass attributes to FormHelper.
+        $multiple = isset($attributes['multiple']) ? $attributes['multiple'] : false;
+        $deselect = isset($attributes['deselect']) ? $attributes['deselect'] : false;
+
+        // Chosen only supports deselect on single selects.
         // @todo write a test and configure
-        if (isset($attributes['deselect']) && $attributes['deselect'] === true) {
+        if ($deselect === true && $multiple === false) {
             $class .= '-deselect';
             unset($attributes['deselect']);
         }
@@ -122,7 +131,7 @@ class ChosenHelper extends AppHelper
             return;
         }
 
-        switch ($this->settings['framework']) {
+        switch ($this->getSetting('framework')) {
             case 'prototype':
                 $elm = 'prototype-script';
                 $script = 'chosen.proto.%s';
