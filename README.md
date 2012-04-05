@@ -150,4 +150,4 @@ $this->Chosen->select(
 ?>
 ```
 
-Do not use ```empty``` attribute with deselect, use data-placeholder instead.
+Do not use ```'empty' => 'Please Select...'``` attribute with deselect, use ```'data-placeholder' => 'Please Select...'``` instead.
