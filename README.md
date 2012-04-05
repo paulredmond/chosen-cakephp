@@ -54,7 +54,7 @@ Out of the box, the ChosenHelper will work with jQuery; but you might want proto
 public $helpers = array(
     'Chosen.Chosen' => array(
         'framework' => 'prototype',
-        'class'     => 'chosen-custom', // Delselect-enabled class would be 'chosen-custom-deselect'
+        'class'     => 'chosen-custom', // Deselect-enabled class would be 'chosen-custom-deselect'
     ),
 );
 ```
