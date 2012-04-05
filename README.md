@@ -28,7 +28,7 @@ CakePlugin::load('Chosen');
 ```
 
 ### Optional webroot symlink
-```
+```console
 cd /path/to/app/webroot
 ln -s ../path/to/chosen/plugin/webroot chosen
 ```
