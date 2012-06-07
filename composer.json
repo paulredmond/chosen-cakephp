@@ -15,22 +15,23 @@
             "homepage": "http://harvesthq.github.com/chosen"
         }
     ],
-    "repositories": {
-        "harvesthq/chosen": {
+    "repositories": [
+        {
+            "type": "package",
             "package": {
                 "name": "harvesthq/chosen",
-                "version": "0.9.5",
+                "version": "0.9.8",
                 "source": {
                     "url": "https://github.com/harvesthq/chosen.git",
                     "type": "git",
-                    "reference": "v0.9.5"
+                    "reference": "v0.9.8"
                 }
             }
         }
-    },
+    ],
     "require": {
         "php": ">=5.2.6",
-        "harvesthq/chosen": "0.9.5"
+        "harvesthq/chosen": "0.9.8"
     },
     "config": {
         "vendor-dir": "Vendor"
