@@ -1,9 +1,9 @@
 {
     "name": "paulredmond/chosen-cakephp",
-    "description": "Chosen CakePHP plugin for CakePHP 1.3 and 2.0",
+    "description": "Chosen CakePHP plugin for CakePHP 1.3 and CakePHP 2",
     "keywords": ["plugin", "cakephp"],
     "homepage": "https://github.com/paulredmond/chosen-cakephp",
-    "version": "2.0.0",
+    "version": "2.0.3",
     "license": "MIT",
     "authors": [
         {
