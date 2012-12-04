@@ -125,7 +125,7 @@ class ChosenHelper extends AppHelper
         return $this->Form->select($name, $options, $attributes);
     }
 
-    public function afterRender()
+    public function afterRender($viewFile)
     {
         if (false === $this->load) {
             return;
