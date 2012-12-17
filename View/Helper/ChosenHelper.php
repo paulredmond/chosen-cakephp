@@ -56,7 +56,7 @@ class ChosenHelper extends AppHelper
     /**
      * Runtime configuration
      */
-    protected $settings = array();
+    public $settings = array();
 
     public function __construct(View $view, $settings = array())
     {
