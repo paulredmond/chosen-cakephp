@@ -30,6 +30,12 @@ class ChosenHelper extends AppHelper
     private $load = false;
 
     /**
+     * $loaded
+     * If the scripts were loaded.
+     */
+    private $loaded = false;
+
+    /**
      * Determine if debug is disabled/enabled
      */
     private $debug = false;
@@ -50,19 +56,19 @@ class ChosenHelper extends AppHelper
     /**
      * Runtime configuration
      */
-    protected $settings = array();
+    public $settings = array();
 
     public function __construct(View $view, $settings = array())
     {
-		parent::__construct($view, $settings);
-		$this->view = $view;
-		$this->settings = array_merge($this->defaults, (array) $settings);
-		$this->debug = Configure::read('debug') ? true : false;
+        parent::__construct($view, $settings);
+        $this->view = $view;
+        $this->settings = array_merge($this->defaults, (array) $settings);
+        $this->debug = Configure::read('debug') ? true : false;
 
-		if (!in_array($fw = $this->getSetting('framework'), array('jquery', 'prototype'))) {
-		    throw new LogicException(sprintf('Configured JavaScript framework "%s" is not supported. Only "jquery" or "prototype" are valid options.', $fw));
-		}
-	}
+        if (!in_array($fw = $this->getSetting('framework'), array('jquery', 'prototype'))) {
+            throw new LogicException(sprintf('Configured JavaScript framework "%s" is not supported. Only "jquery" or "prototype" are valid options.', $fw));
+        }
+    }
 
     public function getSettings()
     {
@@ -130,6 +136,16 @@ class ChosenHelper extends AppHelper
         if (false === $this->load) {
             return;
         }
+
+        $this->loadScripts();
+    }
+
+    public function loadScripts()
+    {
+        if ($this->loaded) {
+            return;
+        }
+        $this->loaded = true;
 
         switch ($this->getSetting('framework')) {
             case 'prototype':
