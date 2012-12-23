@@ -201,4 +201,13 @@ class ChosenHelperTest extends CakeTestCase {
         // Defaults are not empty
         $this->assertNotEmpty($defaults);
     }
+
+    public function testLoadScriptsCalledTwoTimes() {
+        $this->Chosen->Html = $this->getMock('Html', array('css', 'script', 'scriptBlock'));
+        $this->Chosen->Html->expects($this->once())
+            ->method('css');
+
+        $this->Chosen->loadScripts();
+        $this->Chosen->loadScripts();
+    }
 }
