@@ -1,3 +1,4 @@
+<script>
 document.observe('dom:loaded', function(evt) {
 	var select, selects, _i, _len, _results;
 	if (Prototype.Browser.IE && (Prototype.BrowserFeatures['Version'] === 6 || Prototype.BrowserFeatures['Version'] === 7)) {
@@ -16,3 +17,4 @@ document.observe('dom:loaded', function(evt) {
 	}
 	return _results;
 });
+</script>

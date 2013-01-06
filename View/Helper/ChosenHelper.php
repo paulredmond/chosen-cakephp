@@ -166,30 +166,18 @@ class ChosenHelper extends AppHelper
         $this->Html->script("/chosen/chosen/{$script}", array('inline' => false));
 
         // Add the script.
-        if (false !== $block = $this->getElement($elm)) {
-            $this->Html->scriptBlock($block, array('inline' => false));
-        }
+        $this->view->append('script', $this->getElement($elm));
     }
 
     /**
      * Gets the Plugin's element file based on JS framework being used.
-     * Accommodates 2.0.0 and 2.1.0 View::element() API changes.
      *
      * @param $element string Name of the plugin element to use.
      * @return string rendered javascript block based on the JS framework element.
      */
     protected function getElement($element)
     {
-        $block = false;
-        $version = Configure::version();
         $class = $this->getSetting('class');
-
-        if (version_compare($version, '2.1.0', '>=')) {
-            $block = $this->view->element('Chosen.' . $element, array('class' => $class));
-        } else if (version_compare($version, '2.1.0', '<')) {
-            $block = $this->view->element($element, array('class' => $class), array('plugin' => 'Chosen'));
-        }
-
-        return $block;
+        return $this->view->element('Chosen.' . $element, array('class' => $class));
     }
 }
