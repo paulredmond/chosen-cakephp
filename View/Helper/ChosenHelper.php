@@ -47,22 +47,22 @@ class ChosenHelper extends AppHelper
 
     /**
      * Default configuration options.
+     *
+     * Settings configured Configure class, ie. `Configure::write('Chosen.asset_base', '/path');`
+     * take precedence over settings configured through Controller::$helpers property.
      */
-    protected $defaults = array(
+    protected $settings = array(
         'framework' => 'jquery',
         'class' => 'chzn-select',
+        'asset_base' => '/chosen/chosen',
     );
-
-    /**
-     * Runtime configuration
-     */
-    public $settings = array();
 
     public function __construct(View $view, $settings = array())
     {
         parent::__construct($view, $settings);
         $this->view = $view;
-        $this->settings = array_merge($this->defaults, (array) $settings);
+        // @todo - this is merged by Helper::__construct() in 2.3.
+        $this->settings = array_merge($this->settings, (array) $settings, (array) Configure::read('Chosen'));
         $this->debug = Configure::read('debug') ? true : false;
 
         if (!in_array($fw = $this->getSetting('framework'), array('jquery', 'prototype'))) {
@@ -146,6 +146,7 @@ class ChosenHelper extends AppHelper
             return;
         }
         $this->loaded = true;
+        $base = $this->getsetting('asset_base');
 
         switch ($this->getSetting('framework')) {
             case 'prototype':
@@ -160,10 +161,10 @@ class ChosenHelper extends AppHelper
             break;
         }
 
-        // 3rd party assets
+        // 3rd party assets.
         $script = sprintf($script, $this->debug === true ? 'js' : 'min.js');
-        $this->Html->css('/chosen/chosen/chosen.css', null, array('inline' => false));
-        $this->Html->script("/chosen/chosen/{$script}", array('inline' => false));
+        $this->Html->css($base . '/chosen.css', null, array('inline' => false));
+        $this->Html->script($base . '/' . $script, array('inline' => false));
 
         // Add the script.
         $this->view->append('script', $this->getElement($elm));
