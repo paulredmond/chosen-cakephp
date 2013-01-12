@@ -60,7 +60,7 @@ class ChosenHelperTest extends CakeTestCase
         $helper = $this->getNewHelperInstance();
         $this->assertTrue($helper->isSupportedFramework('jquery'), sprintf($message, 'jquery'));
         $this->assertTrue($helper->isSupportedFramework('prototype'), sprintf($message, 'prototype'));
-        $this->assertTrue($helper->isSupportedFramework('PROTOTYPE'), sprintf($message, 'PROTOTYPE'));
+        $this->assertfalse($helper->isSupportedFramework('PROTOTYPE'), "Uppercase 'PROTOTYPE' should not be a valid framework.");
         $this->assertFalse($helper->isSupportedFramework('not_supported'), "The framework setting 'not_supported' should not be valid.");
     }
 

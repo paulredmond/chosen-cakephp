@@ -187,6 +187,6 @@ class ChosenHelper extends AppHelper
      */
     public function isSupportedFramework($val)
     {
-        return in_array(strtolower($val), array('jquery', 'prototype'));
+        return in_array($val, array('jquery', 'prototype'));
     }
 }
