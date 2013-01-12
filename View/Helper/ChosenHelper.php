@@ -24,48 +24,47 @@ class ChosenHelper extends AppHelper
     public $helpers = array('Html', 'Form');
 
     /**
-     * $load
-     * If a chosen select element was called, load up the scripts.
-     */
-    private $load = false;
-
-    /**
-     * $loaded
-     * If the scripts were loaded.
-     */
-    private $loaded = false;
-
-    /**
-     * Determine if debug is disabled/enabled
-     */
-    private $debug = false;
-
-    /**
-     * @var \View
-     */
-    private $view = null;
-
-    /**
      * Default configuration options.
      *
      * Settings configured Configure class, ie. `Configure::write('Chosen.asset_base', '/path');`
      * take precedence over settings configured through Controller::$helpers property.
      */
-    protected $settings = array(
+    public $settings = array(
         'framework' => 'jquery',
         'class' => 'chzn-select',
         'asset_base' => '/chosen/chosen',
     );
 
+    /**
+     * If a chosen select element was called, load up the scripts.
+     *
+     * @var Boolean
+     */
+    private $load = false;
+
+    /**
+     * If the scripts were loaded.
+     *
+     * @var Boolean
+     */
+    private $loaded = false;
+
+    /**
+     * Determine if debug is disabled/enabled
+     *
+     * @var Boolean
+     */
+    private $debug = false;
+
     public function __construct(View $view, $settings = array())
     {
         parent::__construct($view, $settings);
-        $this->view = $view;
+
         // @todo - this is merged by Helper::__construct() in 2.3.
         $this->settings = array_merge($this->settings, (array) $settings, (array) Configure::read('Chosen'));
         $this->debug = Configure::read('debug') ? true : false;
 
-        if (!in_array($fw = $this->getSetting('framework'), array('jquery', 'prototype'))) {
+        if (!$this->isSupportedFramework($fw = $this->getSetting('framework'))) {
             throw new LogicException(sprintf('Configured JavaScript framework "%s" is not supported. Only "jquery" or "prototype" are valid options.', $fw));
         }
     }
@@ -82,11 +81,6 @@ class ChosenHelper extends AppHelper
         }
 
         return null;
-    }
-
-    public function getDefaults()
-    {
-        return (array) $this->defaults;
     }
 
     public function getDebug()
@@ -145,6 +139,7 @@ class ChosenHelper extends AppHelper
         if ($this->loaded) {
             return;
         }
+
         $this->loaded = true;
         $base = $this->getsetting('asset_base');
 
@@ -167,7 +162,7 @@ class ChosenHelper extends AppHelper
         $this->Html->script($base . '/' . $script, array('inline' => false));
 
         // Add the script.
-        $this->view->append('script', $this->getElement($elm));
+        $this->_View->append('script', $this->getElement($elm));
     }
 
     /**
@@ -179,6 +174,19 @@ class ChosenHelper extends AppHelper
     protected function getElement($element)
     {
         $class = $this->getSetting('class');
-        return $this->view->element('Chosen.' . $element, array('class' => $class));
+
+        return $this->_View->element('Chosen.' . $element, array('class' => $class));
+    }
+
+    /**
+     * Test if a JS framework is supported by this helper.
+     *
+     * @param $val The 'framework' setting must use a supported framework.
+     *
+     * @return bool
+     */
+    public function isSupportedFramework($val)
+    {
+        return in_array($val, array('jquery', 'prototype'));
     }
 }
