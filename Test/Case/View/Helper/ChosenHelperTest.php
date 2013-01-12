@@ -45,6 +45,25 @@ class ChosenHelperTest extends CakeTestCase
         return $this->Chosen->select('Article.category', array(1 => 'Option 1', 2 => 'Option 2'), $options);
     }
 
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage Configured JavaScript framework "does_not_exist" is not supported. Only "jquery" or "prototype" are valid options.
+     */
+    public function testInvalidFrameworkLogicException()
+    {
+        $helper = $this->getNewHelperInstance(array('framework' => 'does_not_exist'));
+    }
+
+    public function testIsSupportedFrameworkMethod()
+    {
+        $message = "The framework setting '%s' should be valid, but is not.";
+        $helper = $this->getNewHelperInstance();
+        $this->assertTrue($helper->isSupportedFramework('jquery'), sprintf($message, 'jquery'));
+        $this->assertTrue($helper->isSupportedFramework('prototype'), sprintf($message, 'prototype'));
+        $this->assertTrue($helper->isSupportedFramework('PROTOTYPE'), sprintf($message, 'PROTOTYPE'));
+        $this->assertFalse($helper->isSupportedFramework('not_supported'), "The framework setting 'not_supported' should not be valid.");
+    }
+
     public function testSelectTag()
     {
 
