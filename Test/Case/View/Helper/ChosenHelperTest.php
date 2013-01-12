@@ -99,45 +99,46 @@ class ChosenHelperTest extends CakeTestCase {
     public function testAfterRenderMethod()
     {
         $html = $this->getSelectInput();
-        $this->Chosen->afterRender();
-        $scripts = $this->View->getScripts();
-        
+        $this->Chosen->afterRender('fake');
+        $scripts = $this->View->Blocks->get('script');
+        $css = $this->View->Blocks->get('css');
+
         $expected = array(
-			array('link' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => '/chosen/chosen/chosen.css')),
 			array('script' => array('type' => 'text/javascript', 'src' => '/chosen/chosen/chosen.jquery.js')),
 			'/script',
-			array('script' => array('type' => 'text/javascript')),
+			array('script' => array()), // Bare <script> tag
 		);
-		$this->assertCount(3, $scripts);
-		$this->assertTags(implode("\n", $scripts), $expected);
+
+		$this->assertTags($scripts, $expected);
+
+        $expected = array('link' => array(
+            'rel' => 'stylesheet',
+            'type' => 'text/css',
+            'href' => '/chosen/chosen/chosen.css'
+        ));
+        $this->assertTags($css, $expected);
 
 		// Third script is a little trickier to test
 		$class = $this->Chosen->getSetting('class');
-		$script = $scripts[2];
+
 		// Check for a jQuery domready
-		$this->assertRegExp("/\\$\(\s*document\s*\)\.ready\(\s*function\s*\(\){/", $script);
+		$this->assertRegExp("/\\$\(\s*document\s*\)\.ready\(\s*function\s*\(\){/", $scripts);
 		// Make sure script is calling chosen() method with the configured className
-		$this->assertRegExp("/\\$\(['\"]\.{$class}['\"]\)\.chosen\(\)/", $script);
+		$this->assertRegExp("/\\$\(['\"]\.{$class}['\"]\)\.chosen\(\)/", $scripts);
 		// Make sure domready call is closed properly
-		$this->assertRegExp("/}\s*\);/", $script);
+		$this->assertRegExp("/}\s*\);/", $scripts);
     }
     
     public function testHelperConstruction()
     {
         $helper = $this->Chosen;
         
-        // Make sure defaults are working
-        $this->assertEqual($helper->getDefaults(), $helper->getSettings());
-        
         // Test when custom settings are configured.
         $custom = $this->getNewHelperInstance(array(
             'class' => 'my-custom-chosen'
         ));
         
-        // Custom settings should be merged in
-        $this->assertNotEquals($custom->getSettings(), $custom->getDefaults());
-        
-        // Preserve current debug seting
+        // Preserve current debug setting
         $debug = Configure::read('debug');
         
         // Test to see if debug is on
@@ -164,7 +165,7 @@ class ChosenHelperTest extends CakeTestCase {
     {
         $helper = $this->Chosen;
         
-        $expected = $helper->getDefaults();
+        $expected = $helper->getSettings();
         $expected = $expected['class'];
         
         // Setting returned should not be null
@@ -187,19 +188,6 @@ class ChosenHelperTest extends CakeTestCase {
         
         // Settings should not be empty
         $this->assertNotEmpty($settings);
-    }
-    
-    public function testGetDefaultsMethod()
-    {
-        $helper = $this->Chosen;
-        
-        $defaults = $helper->getDefaults();
-        
-        // Make sure the getDefaults returns an array
-        $this->assertInternalType('array', $defaults);
-        
-        // Defaults are not empty
-        $this->assertNotEmpty($defaults);
     }
 
     public function testLoadScriptsCalledTwoTimes() {
