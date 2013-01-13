@@ -1,6 +1,6 @@
 {
     "name": "paulredmond/chosen-cakephp",
-    "description": "Chosen CakePHP plugin for CakePHP 2.1",
+    "description": "Chosen CakePHP plugin for CakePHP 2",
     "keywords": ["plugin", "cakephp"],
     "homepage": "https://github.com/paulredmond/chosen-cakephp",
     "version": "2.1.0",
