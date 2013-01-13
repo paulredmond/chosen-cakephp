@@ -1,6 +1,6 @@
-# ChosenHelper for CakePHP 2.0x
+# ChosenHelper for CakePHP 2
 
-ChosenHelper is a class for integrating HarvestHQ [Chosen](https://github.com/harvesthq/chosen/) select boxes in CakePHP 2.0x.
+ChosenHelper is a class for integrating HarvestHQ [Chosen](https://github.com/harvesthq/chosen/) select boxes in CakePHP 2.
 
 Check out HarvestHQ's [demo](http://harvesthq.github.com/chosen/) for documentation and usage.
 
@@ -165,4 +165,4 @@ Do not use ```'empty' => 'Please Select...'``` attribute with deselect, use ```'
 
 License
 -------
-Copyright 2011-2013 Paul Redmond. It is free software, and may be redistributed under the terms specified in the LICENSE file. License is also available [online](http://paulredmond.mit-license.org/).
+Copyright 2013 Paul Redmond. It is free software, and may be redistributed under the terms specified in the LICENSE file. License is also available [online](http://paulredmond.mit-license.org/).
