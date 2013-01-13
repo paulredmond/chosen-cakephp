@@ -4,7 +4,8 @@ ChosenHelper is a class for integrating HarvestHQ [Chosen](https://github.com/ha
 
 Check out HarvestHQ's [demo](http://harvesthq.github.com/chosen/) for documentation and usage.
 
-### Installation
+Installation
+------------
 
 Chosen CakePHP 2 plugin supports [Composer](https://github.com/composer/composer) and [Packagist](http://packagist.org/). After you [download](http://packagist.org/) composer.phar and put it in your path:
 
@@ -34,7 +35,8 @@ ln -s ../path/to/chosen/plugin/webroot chosen
 ```
 *Cloning into the folder Chosen is important, as that path is referenced in tests and resource urls.*
 
-### Setup
+Setup
+-----
 
 In /app/Controller/AppController.php:
 
@@ -73,14 +75,16 @@ echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 
 * Note: Chosen CSS/JS files are only loaded if the helper select method is called at least once.*
 
-### Running Tests
+Testing
+-------
 You can run tests for Chosen with phpunit from the ```app``` folder. Learn more about [Testing in CakePHP 2](http://book.cakephp.org/2.0/en/development/testing.html)
 
 ```console
 ./Console/cake testsuite Chosen View/Helper/ChosenHelper
 ```
 
-### Examples
+Examples
+--------
 Chosen inputs behave identically to the FormHelper::input() method.
 
 Multi-select:
@@ -152,3 +156,7 @@ $this->Chosen->select(
 ```
 
 Do not use ```'empty' => 'Please Select...'``` attribute with deselect, use ```'data-placeholder' => 'Please Select...'``` instead.
+
+License
+-------
+Copyright 2011-2013 Paul Redmond. It is free software, and may be redistributed under the terms specified in the LICENSE file. License is also available [online](http://paulredmond.mit-license.org/).
