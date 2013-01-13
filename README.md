@@ -83,6 +83,8 @@ Testing
 -------
 You can run tests for Chosen with phpunit from the ```app``` folder. Learn more about [Testing in CakePHP 2](http://book.cakephp.org/2.0/en/development/testing.html)
 
+_Ensure that you have installed the vendor dependencies for this plugin through composer or some other means._
+
 ```console
 ./Console/cake testsuite Chosen View/Helper/ChosenHelper
 ```
