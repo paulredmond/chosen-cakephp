@@ -24,7 +24,7 @@
       <div id="banner">
         <span id="logo"></span>
 
-        <a href="https://github.com/paulredmond/chosen-cakephp" class="button fork"><strong>Fork On GitHub</strong></a>
+        <a href="https://github.com/paulredmond/chosen-cakephp" class="button fork"><strong>View On GitHub</strong></a>
         <div class="downloads">
           <span>Downloads:</span>
           <ul>
@@ -32,7 +32,6 @@
             <li><a href="https://github.com/paulredmond/chosen-cakephp/tarball/master" class="button">TAR</a></li>
           </ul>
         </div>
-
       </div><!-- end banner -->
 
     <div class="wrapper">
@@ -40,68 +39,59 @@
         <ul></ul>
       </nav>
       <section>
-        <h1>ChosenHelper for CakePHP 2.0x</h1>
+        <h1>ChosenHelper for CakePHP 2</h1>
 
-<p>ChosenHelper is a class for integrating HarvestHQ <a href="https://github.com/harvesthq/chosen/">Chosen</a> select boxes in CakePHP 2.0x.</p>
+<p>ChosenHelper is a class for integrating HarvestHQ <a href="https://github.com/harvesthq/chosen/">Chosen</a> select boxes in CakePHP 2.</p>
 
 <p>Check out HarvestHQ's <a href="http://harvesthq.github.com/chosen/">demo</a> for documentation and usage.</p>
 
-<h3>Installation</h3>
+<h2>Changelog</h2>
+
+<p>A <a href="https://github.com/paulredmond/chosen-cakephp/wiki/Changelog">Changelog Wiki page</a> is now available. Review it carefully to make sure you do not upgrade permaturely. For example: the latest version (2.1.0) includes a backwards compatability break with CakePHP 2.0.x.</p>
+
+<h2>Installation</h2>
 
 <p>Chosen CakePHP 2 plugin supports <a href="https://github.com/composer/composer">Composer</a> and <a href="http://packagist.org/">Packagist</a>. After you <a href="http://packagist.org/">download</a> composer.phar and put it in your path:</p>
 
-<div class="highlight">
-<pre><span class="go">cd path/to/app/Plugin or /plugins</span>
+<div class="highlight"><pre><span class="go">cd path/to/app/Plugin or /plugins</span>
 <span class="go">git clone git@github.com:paulredmond/chosen-cakephp.git Chosen</span>
 <span class="go">cd Chosen</span>
 <span class="go">php composer.phar install</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Bootstrap the plugin in app/Config/bootstrap.php:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="c1">// ...</span>
 
 <span class="nx">CakePlugin</span><span class="o">::</span><span class="na">load</span><span class="p">(</span><span class="s1">'Chosen'</span><span class="p">);</span>
 
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-
+</pre></div>
 
 <h3>Optional webroot symlink</h3>
 
-<div class="highlight">
-<pre><span class="go">cd /path/to/app/webroot</span>
+<div class="highlight"><pre><span class="go">cd /path/to/app/webroot</span>
 <span class="go">ln -s ../path/to/chosen/plugin/webroot chosen</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p><em>Cloning into the folder Chosen is important, as that path is referenced in tests and resource urls.</em></p>
 
-<h3>Setup</h3>
+<h2>Setup</h2>
 
 <p>In /app/Controller/AppController.php:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">public</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'Chosen.Chosen'</span><span class="p">,</span>
 <span class="p">);</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Out of the box, the ChosenHelper will work with jQuery; but you might want prototype or a custom class:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">public</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'Chosen.Chosen'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -109,9 +99,7 @@
         <span class="s1">'class'</span>     <span class="o">=&gt;</span> <span class="s1">'chosen-custom'</span><span class="p">,</span> <span class="c1">// Deselect-enabled class would be 'chosen-custom-deselect'</span>
     <span class="p">),</span>
 <span class="p">);</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Now all classes rendered with the helper, or other <code>&lt;select&gt;</code> inputs with your configured class will be targeted.</p>
 
@@ -119,49 +107,41 @@
 
 <p>Make sure that you are loading JQuery (1.4+) or Prototype however you want:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="c1">// One way in In default.ctp</span>
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">script</span><span class="p">(</span><span class="s1">'jquery'</span><span class="p">);</span> <span class="c1">// sets src to /js/jquery.js</span>
-</pre>
-</div>
-
+</pre></div>
 
 <ul>
 <li>Note: Chosen CSS/JS files are only loaded if the helper select method is called at least once.*</li>
-</ul><h3>Running Tests</h3>
+</ul><h2>Testing</h2>
 
 <p>You can run tests for Chosen with phpunit from the <code>app</code> folder. Learn more about <a href="http://book.cakephp.org/2.0/en/development/testing.html">Testing in CakePHP 2</a></p>
 
-<div class="highlight">
-<pre><span class="go">./Console/cake testsuite Chosen View/Helper/ChosenHelper</span>
-</pre>
-</div>
+<p><em>Ensure that you have installed the vendor dependencies for this plugin through composer or some other means.</em></p>
 
+<div class="highlight"><pre><span class="go">./Console/cake testsuite Chosen View/Helper/ChosenHelper</span>
+</pre></div>
 
-<h3>Examples</h3>
+<h2>Examples</h2>
 
 <p>Chosen inputs behave identically to the FormHelper::input() method.</p>
 
 <p>Multi-select:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Chosen</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span>
     <span class="s1">'Article.category_id'</span><span class="p">,</span>
     <span class="k">array</span><span class="p">(</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">'Category 1'</span><span class="p">,</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">'Category 2'</span><span class="p">),</span>
     <span class="k">array</span><span class="p">(</span><span class="s1">'data-placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Pick categories...'</span><span class="p">,</span> <span class="s1">'multiple'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
 <span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Default selected:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Chosen</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span>
     <span class="s1">'Article.category_id'</span><span class="p">,</span>
     <span class="k">array</span><span class="p">(</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">'Category 1'</span><span class="p">,</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">'Category 2'</span><span class="p">),</span>
@@ -171,14 +151,11 @@
     <span class="p">)</span> 
 <span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Grouped:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Chosen</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span>
     <span class="s1">'Profile.favorite_team'</span><span class="p">,</span>
     <span class="k">array</span><span class="p">(</span>
@@ -202,32 +179,31 @@
     <span class="p">)</span>
 <span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Deselect on Single Select:</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;?</span><span class="o">=</span>
+<div class="highlight"><pre><span class="o">&lt;?=</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Chosen</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span>
     <span class="s1">'Profile.optional'</span><span class="p">,</span>
     <span class="nv">$options</span><span class="p">,</span>
     <span class="k">array</span><span class="p">(</span><span class="s1">'data-placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Please select...'</span><span class="p">,</span> <span class="s1">'deselect'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">),</span>
 <span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Do not use <code>'empty' =&gt; 'Please Select...'</code> attribute with deselect, use <code>'data-placeholder' =&gt; 'Please Select...'</code> instead.</p>
+
+<h2>License</h2>
+
+<p>Copyright 2013 Paul Redmond. It is free software, and may be redistributed under the terms specified in the LICENSE file. License is also available <a href="http://paulredmond.mit-license.org/">online</a>.</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/paulredmond">paulredmond</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
