@@ -4,6 +4,10 @@ ChosenHelper is a class for integrating HarvestHQ [Chosen](https://github.com/ha
 
 Check out HarvestHQ's [demo](http://harvesthq.github.com/chosen/) for documentation and usage.
 
+Changelog
+---------
+A [Changelog Wiki page](https://github.com/paulredmond/chosen-cakephp/wiki/Changelog) is now available. Review it carefully to make sure you do not upgrade permaturely. For example: the latest version (2.1.0) includes a backwards compatability break with CakePHP 2.0.x.
+
 Installation
 ------------
 
