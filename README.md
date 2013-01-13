@@ -2,7 +2,7 @@
 
 ChosenHelper is a class for integrating HarvestHQ [Chosen](https://github.com/harvesthq/chosen/) select boxes in CakePHP 2. Check out HarvestHQ's [demo](http://harvesthq.github.com/chosen/) for documentation and usage.
 
-[![Build Status](https://travis-ci.org/paulredmond/chosen-cakephp.png)](https://travis-ci.org/paulredmond/chosen-cakephp)
+[![Build Status](https://travis-ci.org/paulredmond/chosen-cakephp.png?branch=master,2.1)](https://travis-ci.org/paulredmond/chosen-cakephp)
 
 Changelog
 ---------
