@@ -1,23 +1,22 @@
 <?php
+
+/**
+ * This file is part of the Chosen CakePHP Plugin.
+ *
+ * Copyright (c) Paul Redmond - https://github.com/paulredmond
+ *
+ * @link https://github.com/paulredmond/chosen-cakephp
+ * @license http://paulredmond.mit-license.org/ The MIT License
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 /**
  * Chosen Helper File
  *
- * Copyright (c) 2011 Paul Redmond
- *
- * Distributed under the terms of the MIT License.
- *
- * PHP Version 5
- * CakePHP Version 2.x
- *
  * @package chosen
  * @subpackage chosen.views.helpers
- * @copyright 2011 Paul Redmond <paulrredmond@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link https://github.com/paulredmond/chosen-cakephp
- *
- * HarvestHQ Chosen JQuery/Prototype plugin.
- * @link https://github.com/harvesthq/chosen
- *
  */
 class ChosenHelper extends AppHelper
 {
