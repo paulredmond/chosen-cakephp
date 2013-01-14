@@ -33,7 +33,7 @@
     "require": {
         "php": ">=5.2.6",
         "harvesthq/chosen": "0.9.11",
-        "composer/installers": "1.*"
+        "composer/installers": "dev-master"
     },
     "config": {
         "vendor-dir": "Vendor"
