@@ -6,8 +6,8 @@ class Installer
 {
     public static function postInstall()
     {
-        $target = APP . '/Vendor/harvesthq/chosen/chosen';
-        $link = APP . '/Plugin/Chosen/webroot/chosen';
+        $target = __DIR__ . '/../../../../Vendor/harvesthq/chosen/chosen';
+        $link = realpath(__DIR__ . '/../../webroot/chosen');
         symlink($target, $link);
     }
 }
