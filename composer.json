@@ -35,6 +35,9 @@
         "harvesthq/chosen": "0.9.11",
         "composer/installers": "dev-master"
     },
+    "autoload": {
+        "psr-0": { "Chosen": "/Lib" }
+    },
     "config": {
         "vendor-dir": "Vendor"
     },
