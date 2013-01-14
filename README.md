@@ -13,10 +13,36 @@ Installation
 
 Chosen CakePHP 2 plugin supports [Composer](https://github.com/composer/composer) and [Packagist](http://packagist.org/). After you [download](http://packagist.org/) composer.phar and put it in your path:
 
-```console
-cd path/to/app/Plugin or /plugins
-git clone git@github.com:paulredmond/chosen-cakephp.git Chosen
-cd Chosen
+Include the following `composer.json` at `path/to/app`
+
+```json
+{
+    "minimum-stability": "dev",
+    "config": {
+        "vendor-dir": "Vendor"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "harvesthq/chosen",
+                "version": "0.9.11",
+                "source": {
+                    "url": "https://github.com/harvesthq/chosen.git",
+                    "type": "git",
+                    "reference": "v0.9.11"
+                }
+            }
+        }
+    ],
+    "require": {
+        "paulredmond/chosen-cakephp": "*"
+    }
+}
+```
+
+```bash
+cd path/to/app
 php composer.phar install
 ```
 

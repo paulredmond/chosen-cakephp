@@ -5,6 +5,7 @@
     "homepage": "https://github.com/paulredmond/chosen-cakephp",
     "version": "2.1.0",
     "license": "MIT",
+    "type": "cakephp-plugin",
     "authors": [
         {
             "name": "Paul Redmond",
@@ -31,9 +32,13 @@
     ],
     "require": {
         "php": ">=5.2.6",
-        "harvesthq/chosen": "0.9.11"
+        "harvesthq/chosen": "0.9.11",
+        "composer/installers": "dev-master"
     },
     "config": {
         "vendor-dir": "Vendor"
+    },
+    "extra": {
+        "installer-name": "Chosen"
     }
 }
