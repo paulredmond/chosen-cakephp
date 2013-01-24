@@ -16,27 +16,9 @@
             "homepage": "http://harvesthq.github.com/chosen"
         }
     ],
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "harvesthq/chosen",
-                "version": "0.9.11",
-                "source": {
-                    "url": "https://github.com/harvesthq/chosen.git",
-                    "type": "git",
-                    "reference": "v0.9.11"
-                }
-            }
-        }
-    ],
     "require": {
         "php": ">=5.2.6",
-        "harvesthq/chosen": "0.9.11",
         "composer/installers": "dev-master"
-    },
-    "autoload": {
-        "psr-0": { "Chosen": "/Lib" }
     },
     "config": {
         "vendor-dir": "Vendor"
