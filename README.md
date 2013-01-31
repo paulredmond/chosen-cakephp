@@ -13,33 +13,17 @@ Installation
 
 Chosen CakePHP 2 plugin supports [Composer](https://github.com/composer/composer) and [Packagist](http://packagist.org/). After you [download](http://packagist.org/) composer.phar and put it in your path:
 
-Include the following `composer.json` at `path/to/app`
+Composer will take care of installing the plugin into the correct location. Include the following `composer.json` file at `path/to/app`
 
 ```json
 {
-    "minimum-stability": "dev",
-    "config": {
-        "vendor-dir": "Vendor"
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "harvesthq/chosen",
-                "version": "0.9.11",
-                "source": {
-                    "url": "https://github.com/harvesthq/chosen.git",
-                    "type": "git",
-                    "reference": "v0.9.11"
-                }
-            }
-        }
-    ],
     "require": {
         "paulredmond/chosen-cakephp": "*"
     }
 }
 ```
+
+_Use a sensible stable version for the plugin. The above '*' is only intended as an example._
 
 ```bash
 cd path/to/app
@@ -61,9 +45,8 @@ CakePlugin::load('Chosen');
 ### Optional webroot symlink
 ```console
 cd /path/to/app/webroot
-ln -s ../path/to/chosen/plugin/webroot chosen
+ln -s ../Plugin/Chosen/webroot chosen
 ```
-*Cloning into the folder Chosen is important, as that path is referenced in tests and resource urls.*
 
 Setup
 -----
