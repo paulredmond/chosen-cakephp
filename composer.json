@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": ">=5.2.6",
-        "composer/installers": "dev-master"
+        "composer/installers": "1.*"
     },
     "config": {
         "vendor-dir": "Vendor"

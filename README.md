@@ -17,10 +17,6 @@ Composer will take care of installing the plugin into the correct location. Incl
 
 ```json
 {
-    "minimum-stability": "dev",
-    "config": {
-        "vendor-dir": "Vendor"
-    },
     "require": {
         "paulredmond/chosen-cakephp": "*"
     }
