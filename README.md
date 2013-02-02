@@ -20,7 +20,7 @@ Composer will take care of installing the plugin into the correct location. Incl
 ```json
 {
     "require": {
-        "paulredmond/chosen-cakephp": "2.1.*"
+        "paulredmond/chosen-cakephp": "2.0.*"
     }
 }
 ```
