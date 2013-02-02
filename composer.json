@@ -14,6 +14,10 @@
         {
             "name": "Harvest HQ",
             "homepage": "http://harvesthq.github.com/chosen"
+        },
+        {
+            "name": "Github Contributors",
+            "homepage": "https://github.com/paulredmond/chosen-cakephp/graphs/contributors"
         }
     ],
     "require": {
