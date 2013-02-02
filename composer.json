@@ -3,7 +3,7 @@
     "description": "Chosen CakePHP plugin for CakePHP 2",
     "keywords": ["plugin", "cakephp"],
     "homepage": "https://github.com/paulredmond/chosen-cakephp",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "license": "MIT",
     "type": "cakephp-plugin",
     "authors": [
