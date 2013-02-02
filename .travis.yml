@@ -5,13 +5,15 @@ php:
   - 5.4
 
 env:
-  - CAKE_VERSION=2.0.6
+  - CAKE_VERSION=2.0.3
 
 before_script:
-  - git clone --depth 1 git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp && git checkout $CAKE_VERSION
+  - mkdir ../cakephp
+  - wget https://github.com/cakephp/cakephp/archive/2.0.6.tar.gz
+  - tar -xzf 2.0.6.tar.gz -C ../ && cd ../cakephp-2.0.6
   - mysql -e 'CREATE DATABASE cakephp_test;'
   - cp -R ../chosen-cakephp plugins/Chosen
-  - chmod -R 777 ../cakephp/app/tmp
+  - chmod -R 777 ../cakephp-2.0.6/app/tmp
   - set +H
   - echo "<?php
       class DATABASE_CONFIG {
@@ -64,6 +66,6 @@ before_script:
           \$this->{\$source} = \$config;
         }
       }
-      }" > ../cakephp/app/Config/database.php
+      }" > ../cakephp-2.0.6/app/Config/database.php
 script:
   - ./lib/Cake/Console/cake test Chosen View/Helper/ChosenHelper --stderr
