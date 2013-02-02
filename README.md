@@ -88,6 +88,16 @@ echo $this->Html->script('jquery'); // sets src to /js/jquery.js
 
 * Note: Chosen CSS/JS files are only loaded if the helper select method is called at least once.*
 
+Pull Requests
+-------------
+
+
+Chosen CakePHP plugin has [contributions](https://github.com/paulredmond/chosen-cakephp/graphs/contributors) from the Github communitiy. I am grateful for the suggestions, fixes, and improvements. If you'd like to submit a pull request, follow these simple instructions:
+
+  * Pull requests for the 2.1.x version should be submitted to the `2.1` branch
+  * If the supported `2.0` branch (for CakePHP 2.0.x) could benefit from you're Pull Request, consider opening another Pull Request for that branch.
+  * The `master` branch reflects the latest stable version available.
+
 Testing
 -------
 You can run tests for Chosen with phpunit from the ```app``` folder. Learn more about [Testing in CakePHP 2](http://book.cakephp.org/2.0/en/development/testing.html)
