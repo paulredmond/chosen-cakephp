@@ -95,7 +95,7 @@ Pull Requests
 Chosen CakePHP plugin has [contributions](https://github.com/paulredmond/chosen-cakephp/graphs/contributors) from the Github communitiy. I am grateful for the suggestions, fixes, and improvements. If you'd like to submit a pull request, follow these simple instructions:
 
   * Pull requests for the 2.1.x version should be submitted to the `2.1` branch
-  * If the supported `2.0` branch (for CakePHP 2.0.x) could benefit from you're Pull Request, consider opening another Pull Request for that branch.
+  * If the supported `2.0` branch (for CakePHP 2.0.x) could benefit from your Pull Request, consider opening another Pull Request for that branch.
   * The `master` branch reflects the latest stable version available.
 
 Testing
