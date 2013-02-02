@@ -68,4 +68,4 @@ before_script:
       }
       }" > ../cakephp-2.0.6/app/Config/database.php
 script:
-  - ./lib/Cake/Console/cake test Chosen View/Helper/ChosenHelper --stderr
+  - ./lib/Cake/Console/cake testsuite Chosen View/Helper/ChosenHelper --stderr
