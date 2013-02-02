@@ -99,7 +99,7 @@ class ChosenHelperTest extends CakeTestCase {
     public function testAfterRenderMethod()
     {
         $html = $this->getSelectInput();
-        $this->Chosen->afterRender();
+        $this->Chosen->afterRender('');
         $scripts = $this->View->getScripts();
         
         $expected = array(
