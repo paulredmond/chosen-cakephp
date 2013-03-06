@@ -122,7 +122,8 @@ class ChosenHelper extends AppHelper
         }
 
         $attributes = array_merge($attributes, array('options' => $options, 'type' => 'select'));
-		return $this->Form->input($name, $attributes);
+
+        return $this->Form->input($name, $attributes);
     }
 
     public function afterRender($viewFile)
