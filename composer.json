@@ -3,7 +3,7 @@
     "description": "Chosen CakePHP plugin for CakePHP 2",
     "keywords": ["plugin", "cakephp"],
     "homepage": "https://github.com/paulredmond/chosen-cakephp",
-    "version": "2.1.4",
+    "version": "2.2.0",
     "license": "MIT",
     "type": "cakephp-plugin",
     "authors": [
@@ -28,6 +28,9 @@
         "vendor-dir": "Vendor"
     },
     "extra": {
-        "installer-name": "Chosen"
+        "installer-name": "Chosen",
+        "branch-alias": {
+            "dev-master": "2.2.x-dev"
+        }
     }
 }
