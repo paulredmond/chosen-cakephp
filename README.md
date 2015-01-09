@@ -134,7 +134,7 @@ echo $this->Chosen->select(
     array(
         'data-placeholder' => 'Pick categories...',
         'default' => 1,
-    ) 
+    )
 );
 ?>
 ```
@@ -171,7 +171,7 @@ echo $this->Chosen->select(
 Deselect on Single Select:
 
 ```php
-<?=
+<?php
 $this->Chosen->select(
     'Profile.optional',
     $options,
