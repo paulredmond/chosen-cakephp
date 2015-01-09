@@ -108,6 +108,7 @@ _Ensure that you have installed the vendor dependencies for this plugin through 
 ./Console/cake testsuite Chosen View/Helper/ChosenHelper
 ```
 
+
 Examples
 --------
 Chosen inputs behave identically to the FormHelper::input() method.
@@ -172,7 +173,7 @@ Deselect on Single Select:
 
 ```php
 <?php
-$this->Chosen->select(
+echo $this->Chosen->select(
     'Profile.optional',
     $options,
     array('data-placeholder' => 'Please select...', 'deselect' => true),
