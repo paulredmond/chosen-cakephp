@@ -30,7 +30,7 @@ class ChosenHelper extends AppHelper
      */
     public $settings = array(
         'framework' => 'jquery',
-        'class' => 'chzn-select',
+        'class' => 'chosen-select',
         'asset_base' => '/chosen/chosen',
     );
 
