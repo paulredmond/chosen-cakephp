@@ -11,10 +11,7 @@ env:
 before_script:
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp && git checkout $CAKE_VERSION
   - sh -c "if [ '$TRAVIS_PHP_VERSION' != '5.2' ]; then composer global require 'phpunit/phpunit=3.7.33'; fi"
-  - ln -s ~/.composer/vendor/phpunit/phpunit/PHPUnit ../cakephp/app/Vendor/PHPUnit
-  - if [[ $PHPCS != '1' ]]; then echo "
-
-    require dirname(__DIR__) . '/Vendor/autoload.php';" >> ../cakephp/app/Config/core.php; fi
+  - ln -s ~/.composer/vendor/phpunit/phpunit/PHPUnit ../cakephp/vendors/PHPUnit
   - mysql -e 'CREATE DATABASE cakephp_test;'
   - cp -R ../chosen-cakephp plugins/Chosen
   - chmod -R 777 ../cakephp/app/tmp
