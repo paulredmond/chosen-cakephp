@@ -6,13 +6,16 @@ php:
 
 env:
   global:
-    - CAKE_VERSION=2.1.3
+    - CAKE_VERSION=2.4.10
 
 before_script:
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp && git checkout $CAKE_VERSION
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' != '5.2' ]; then composer global require 'phpunit/phpunit=3.7.33'; fi"
+  - ln -s ~/.composer/vendor/phpunit/phpunit/PHPUnit ../cakephp/vendors/PHPUnit
   - mysql -e 'CREATE DATABASE cakephp_test;'
   - cp -R ../chosen-cakephp plugins/Chosen
   - chmod -R 777 ../cakephp/app/tmp
+  - phpenv rehash
   - set +H
   - echo "<?php
       class DATABASE_CONFIG {
